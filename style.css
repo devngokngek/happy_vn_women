@@ -224,7 +224,7 @@ body {
     }
 }
 
-.card-book {
+/* .card-book {
     width: 90%;
     max-width: 900px;
     height: 520px;
@@ -237,7 +237,77 @@ body {
     transform: scale(0.9);
     animation: zoomIn 1s ease forwards;
     position: relative;
+} */
+ /* Card-book mặc định (desktop) */
+.card-book {
+    width: 90%;
+    max-width: 900px;
+    height: 520px;
+    display: flex;
+    flex-direction: row; /* desktop: ngang */
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.35),
+                0 0 60px rgba(255,51,133,0.3);
+    overflow: hidden;
+    transform: scale(0.9);
+    animation: zoomIn 1s ease forwards;
+    position: relative;
 }
+
+/* Page-left và page-right mặc định */
+.page-left, .page-right {
+    flex: 1;
+    padding: 30px;
+    overflow: hidden;
+}
+
+/* Responsive: màn hình nhỏ (mobile) */
+@media (max-width: 768px) {
+    .card-book {
+        flex-direction: column; /* chuyển sang chiều dọc */
+        height: auto; /* chiều cao tự động */
+        max-height: 90vh; /* tối đa gần full màn hình */
+    }
+
+    .page-left, .page-right {
+        width: 100%;
+        flex: none;
+        padding: 20px;
+    }
+
+    .page-left {
+        min-height: 250px; /* tăng phần vườn hoa */
+    }
+
+    .page-right {
+        min-height: 300px; /* tăng phần nội dung thiệp */
+    }
+
+    .garden-title {
+        font-size: 1.8rem; /* thu nhỏ chữ trên mobile */
+    }
+
+    .garden-subtitle {
+        font-size: 1rem;
+    }
+
+    .page-right h2 {
+        font-size: 1.2rem;
+    }
+
+    .typing {
+        min-height: 180px;
+        font-size: 1rem;
+    }
+
+    .signature {
+        bottom: 10px;
+        right: 20px;
+        font-size: 1rem;
+    }
+}
+
 
 @keyframes zoomIn {
     to {
