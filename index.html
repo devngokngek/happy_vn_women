@@ -1,625 +1,31 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thiệp Chúc Mừng 20/10</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      background: linear-gradient(135deg, #ffcce6, #ffe6f2, #fff0f5);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Animation hoa rơi */
-    .flower {
-      position: fixed;
-      top: -50px;
-      font-size: 24px;
-      color: #ff4da6;
-      animation: fall 10s linear infinite;
-      opacity: 0.8;
-      z-index: 1;
-    }
-    @keyframes fall {
-      0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
-      20% { opacity: 1; }
-      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-    }
-
-    /* PHONG THƯ NÂNG CẤP */
-    .envelope-container {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
-    }
-    
-    .envelope {
-      position: relative;
-      width: 380px;
-      height: 260px;
-      background: linear-gradient(135deg, #ff99cc, #ff66b2);
-      border-radius: 12px;
-      box-shadow: 0 15px 35px rgba(255, 51, 133, 0.4),
-                  0 0 50px rgba(255, 102, 178, 0.3),
-                  inset 0 2px 10px rgba(255, 255, 255, 0.5);
-      cursor: pointer;
-      transition: transform 0.5s, box-shadow 0.5s;
-      z-index: 20;
-      overflow: hidden;
-    }
-    
-    .envelope:hover { 
-      transform: scale(1.05) rotate(2deg);
-      box-shadow: 0 20px 40px rgba(255, 51, 133, 0.6),
-                  0 0 70px rgba(255, 102, 178, 0.5);
-    }
-    
-    .envelope::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
-      z-index: 2;
-      animation: shine 3s infinite;
-    }
-    
-    @keyframes shine {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    .envelope .top-flap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 0;
-      border-left: 190px solid transparent;
-      border-right: 190px solid transparent;
-      border-bottom: 130px solid #ff3385;
-      transform-origin: top;
-      transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-      z-index: 3;
-      filter: drop-shadow(0 -5px 5px rgba(0,0,0,0.1));
-    }
-    
-    .envelope.open .top-flap {
-      transform: rotateX(180deg);
-    }
-
-    .envelope .body {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #ff99cc, #ff66b2);
-      border-radius: 12px;
-      z-index: 1;
-    }
-
-    .btn-2010 {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      padding: 30px 40px;
-      font-weight: bold;
-      background: linear-gradient(135deg, #ff3385, #ff1a75);
-      border: none;
-      color: white;
-      font-size: 1.8rem;
-      box-shadow: 0 0 25px rgba(255,51,133,0.8),
-                  inset 0 2px 5px rgba(255,255,255,0.4);
-      z-index: 4;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-    
-    .btn-2010:hover {
-      transform: translate(-50%, -50%) scale(1.1);
-      box-shadow: 0 0 30px rgba(255,51,133,1),
-                  inset 0 2px 10px rgba(255,255,255,0.6);
-    }
-
-    .envelope-decoration {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      pointer-events: none;
-    }
-    
-    .decoration-heart {
-      position: absolute;
-      color: rgba(255,255,255,0.7);
-      font-size: 20px;
-      animation: float 4s infinite ease-in-out;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(10deg); }
-    }
-    
-    .sparkle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: white;
-      border-radius: 50%;
-      animation: sparkle 2s infinite;
-      opacity: 0;
-    }
-    
-    @keyframes sparkle {
-      0%, 100% { opacity: 0; transform: scale(0); }
-      50% { opacity: 1; transform: scale(1); }
-    }
-
-    /* THIỆP */
-    .card-container {
-      display: none;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      animation: fadeIn 1.5s ease;
-      position: relative;
-      z-index: 5;
-    }
-    
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-    
-    .card-book {
-      width: 90%;
-      max-width: 900px;
-      height: 520px;
-      display: flex;
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.35),
-                  0 0 60px rgba(255,51,133,0.3);
-      overflow: hidden;
-      transform: scale(0.9);
-      animation: zoomIn 1s ease forwards;
-      position: relative;
-    }
-    
-    @keyframes zoomIn {
-      to { transform: scale(1); }
-    }
-
-    /* VƯỜN HOA BÊN TRÁI */
-    .page-left {
-      flex: 1;
-      background: linear-gradient(to bottom, #a8e6cf, #dcedc1, #ffd3b6);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 30px;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .garden-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-    
-    .garden-title {
-      color: #ff3385;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-      z-index: 2;
-      font-size: 2rem;
-      background: rgba(255, 255, 255, 0.7);
-      padding: 10px 20px;
-      border-radius: 10px;
-    }
-    
-    .garden-subtitle {
-      color: #555;
-      text-align: center;
-      z-index: 2;
-      background: rgba(255, 255, 255, 0.7);
-      padding: 8px 15px;
-      border-radius: 8px;
-      font-size: 1.1rem;
-    }
-    
-    /* Các loại hoa trong vườn */
-    .garden-flower {
-      position: absolute;
-      z-index: 2;
-      animation: gentleSway 4s infinite ease-in-out;
-    }
-    
-    @keyframes gentleSway {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-5px) rotate(2deg); }
-    }
-    
-    .flower-large {
-      font-size: 60px;
-      bottom: 60px;
-      left: 50px;
-      animation-delay: 0s;
-    }
-    
-    .flower-medium {
-      font-size: 40px;
-      bottom: 40px;
-      right: 60px;
-      animation-delay: 1s;
-    }
-    
-    .flower-small {
-      font-size: 30px;
-      bottom: 30px;
-      left: 120px;
-      animation-delay: 2s;
-    }
-    
-    .flower-tulip {
-      font-size: 35px;
-      bottom: 50px;
-      right: 120px;
-      animation-delay: 0.5s;
-    }
-    
-    .flower-sunflower {
-      font-size: 45px;
-      bottom: 70px;
-      left: 200px;
-      animation-delay: 1.5s;
-    }
-    
-    .flower-lily {
-      font-size: 38px;
-      bottom: 45px;
-      right: 200px;
-      animation-delay: 2.5s;
-    }
-    
-    /* Cỏ và lá */
-    .grass {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 30px;
-      background: linear-gradient(to top, #7cba5a, #8bc34a);
-      z-index: 1;
-    }
-    
-    .leaf {
-      position: absolute;
-      font-size: 25px;
-      color: #7cba5a;
-      z-index: 1;
-      animation: leafSway 5s infinite ease-in-out;
-    }
-    
-    @keyframes leafSway {
-      0%, 100% { transform: rotate(-5deg); }
-      50% { transform: rotate(5deg); }
-    }
-    
-    .leaf-1 {
-      bottom: 25px;
-      left: 80px;
-      animation-delay: 0s;
-    }
-    
-    .leaf-2 {
-      bottom: 20px;
-      right: 100px;
-      animation-delay: 1s;
-    }
-    
-    .leaf-3 {
-      bottom: 15px;
-      left: 250px;
-      animation-delay: 2s;
-    }
-    
-    /* Bướm bay */
-    .butterfly {
-      position: absolute;
-      font-size: 24px;
-      z-index: 3;
-      animation: butterflyFly 8s infinite linear;
-    }
-    
-    @keyframes butterflyFly {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(100px, -50px) rotate(10deg); }
-      50% { transform: translate(200px, 0) rotate(0deg); }
-      75% { transform: translate(100px, 50px) rotate(-10deg); }
-      100% { transform: translate(0, 0) rotate(0deg); }
-    }
-    
-    .butterfly-1 {
-      top: 100px;
-      left: 50px;
-      animation-delay: 0s;
-    }
-    
-    .butterfly-2 {
-      top: 150px;
-      right: 80px;
-      animation-delay: 2s;
-    }
-    
-    /* Ông mặt trời */
-    .sun {
-      position: absolute;
-      top: 30px;
-      right: 40px;
-      font-size: 50px;
-      color: #ffcc00;
-      z-index: 1;
-      animation: sunPulse 3s infinite ease-in-out;
-    }
-    
-    @keyframes sunPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-    
-    .page-right {
-      flex: 1;
-      padding: 40px;
-      font-size: 1.25rem;
-      color: #333;
-      position: relative;
-      background: #fff0f5;
-      overflow: hidden;
-    }
-    
-    .page-right h2 {
-      text-align: center;
-      color: #ff3385;
-      font-weight: bold;
-      margin-bottom: 20px;
-      animation: glow 2s infinite alternate;
-    }
-    
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #ff99cc, 0 0 10px #ff66b2; }
-      to   { text-shadow: 0 0 20px #ff3385, 0 0 40px #ff1a75; }
-    }
-
-    .typing {
-      border-right: 2px solid #ff3385;
-      white-space: pre-line;
-      overflow: hidden;
-      min-height: 220px;
-      line-height: 1.6;
-    }
-    
-    .signature {
-      position: absolute;
-      bottom: 20px;
-      right: 30px;
-      font-style: italic;
-      font-weight: bold;
-      color: #ff3385;
-      display: none;
-      animation: fadeIn 1s ease forwards;
-    }
-
-    /* Trái tim bay */
-    .heart {
-      position: fixed;
-      bottom: -20px;
-      color: #ff3385;
-      font-size: 20px;
-      animation: floatUp 6s linear infinite;
-      z-index: 1;
-    }
-    
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
-    }
-    
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.8);
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s;
-    }
-    
-    .close-btn:hover {
-      background: white;
-      transform: scale(1.1);
-    }
-    
-    .music-control {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(255, 255, 255, 0.8);
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s;
-    }
-    
-    .music-control:hover {
-      background: white;
-      transform: scale(1.1);
-    }
-    
-    .music-note {
-      position: fixed;
-      color: rgba(255, 51, 133, 0.7);
-      font-size: 24px;
-      animation: musicFloat 8s linear infinite;
-      z-index: 1;
-    }
-    
-    @keyframes musicFloat {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-    }
-    /*add*/
-    .envelope-container {
-    perspective: 1200px;
-    }
-
-    .envelope {
-    transform-style: preserve-3d;
-    transition: transform 1.2s ease;
-    }
-
-    .envelope.open {
-    transform: rotateY(25deg) rotateX(15deg) scale(1.1);
-    }
-
-    .envelope .top-flap {
-    backface-visibility: hidden;
-    }
-
-    .envelope.open .top-flap {
-    transform: rotateX(180deg);
-    }
-.card-book {
-  border: 4px solid #ff66b2;
-  box-shadow: 0 0 20px #ff66b2, 0 0 40px #ff33cc;
-  animation: neonPulse 2s infinite alternate;
-}
-
-@keyframes neonPulse {
-  from {
-    box-shadow: 0 0 10px #ff66b2, 0 0 20px #ff3399, 0 0 40px #ff66b2;
-    border-color: #ff66b2;
-  }
-  to {
-    box-shadow: 0 0 20px #cc33ff, 0 0 50px #ff33cc, 0 0 80px #ff99ff;
-    border-color: #ff33cc;
-  }
-}
-/* Container có góc nhìn 3D */
-.envelope-container {
-  perspective: 1200px;
-}
-
-/* Phong thư chính */
-.envelope {
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1.5s ease;
-  border: 4px solid #ff99cc;
-  box-shadow: 0 0 15px #ffb6c1, 0 0 30px #ff99cc;
-  animation: neonEnvelope 1.5s infinite alternate;
-  border-radius: 12px;
-  animation: neonEnvelope 2s infinite alternate;
-  box-shadow: 0 0 15px #ff66b2, 0 0 30px #ff33cc;
-}
-
-/* Khi mở phong thư */
-.envelope.open {
-  transform: rotateY(25deg) rotateX(10deg) scale(1.05);
-}
-
-/* Hiệu ứng neon cho phong thư */
-@keyframes neonEnvelope {
-  from {
-    box-shadow: 0 0 15px #ffb6c1, 0 0 30px #ff99cc;
-    border-color: #ffb6c1;
-  }
-  to {
-    box-shadow: 0 0 25px #ff66b2, 0 0 50px #ff80bf, 0 0 80px #ffb6c1;
-    border-color: #ff66b2;
-  }
-}
-
-/* Nắp thư */
-.top-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  background: linear-gradient(to bottom, #ffb6d9, #ff66b2);
-  border-radius: 12px 12px 0 0;
-  transform-origin: top;
-  transition: transform 1.2s ease;
-  backface-visibility: hidden;
-  box-shadow: 0 0 10px #ff99cc;
-}
-
-/* Nắp thư mở */
-.envelope.open .top-flap {
-  transform: rotateX(180deg);
-}
-
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- PHONG THƯ -->
   <div class="envelope-container">
-    <div class="envelope" id="envelope">
+    <!-- HỘP QUÀ -->
+    <div class="gift-box" id="gift" onclick="openGift()">
+      <div class="ribbon"></div>
+    </div>
+
+    <div class="envelope" id="envelope" style="display:none;">
       <div class="body"></div>
       <div class="top-flap"></div>
       <button class="btn-2010" onclick="openCard()">20-10</button>
       <div class="envelope-decoration" id="decoration"></div>
     </div>
+
   </div>
 
   <!-- THIỆP -->
@@ -628,7 +34,7 @@
       <!-- VƯỜN HOA BÊN TRÁI -->
       <div class="page-left">
         <div class="garden-background"></div>
-        
+
         <!-- Các loại hoa -->
         <div class="garden-flower flower-large">🌹</div>
         <div class="garden-flower flower-medium">🌺</div>
@@ -636,38 +42,38 @@
         <div class="garden-flower flower-tulip">🌷</div>
         <div class="garden-flower flower-sunflower">🌻</div>
         <div class="garden-flower flower-lily">💮</div>
-        
+
         <!-- Lá cây -->
         <div class="leaf leaf-1">🍃</div>
         <div class="leaf leaf-2">🍃</div>
         <div class="leaf leaf-3">🍃</div>
-        
+
         <!-- Bướm -->
         <div class="butterfly butterfly-1">🦋</div>
         <div class="butterfly butterfly-2">🦋</div>
-        
+
         <!-- Ông mặt trời -->
         <div class="sun">☀️</div>
-        
+
         <!-- Cỏ -->
         <div class="grass"></div>
-        
+
         <!-- Tiêu đề -->
         <h1 class="garden-title">Chúc Mừng 20-10</h1>
         <p class="garden-subtitle"><b>Gửi:</b> Những người phụ nữ tuyệt vời!</p>
       </div>
-      
+
       <div class="page-right">
         <h2>💖 Happy Vietnamese Women's Day 💖</h2>
         <div class="typing" id="message"></div>
         <div class="signature" id="signature">Thân gửi: <b>Xuân Tiến</b></div>
       </div>
     </div>
-    
+
     <button class="close-btn" onclick="closeCard()">
       <i class="fas fa-times"></i>
     </button>
-    
+
     <button class="music-control" id="musicControl">
       <i class="fas fa-volume-up"></i>
     </button>
@@ -675,19 +81,28 @@
 
   <!-- Nhạc nền -->
   <audio id="bg-music" loop>
-    <source src="nhacchuongzl.mp3" type="audio/mpeg">
+    <source src="music.mp3" type="audio/mpeg">
   </audio>
 
   <script>
+    function openGift() {
+      let gift = document.getElementById('gift');
+      gift.classList.add('hidden');
+      setTimeout(() => {
+        gift.style.display = 'none';
+        document.getElementById('envelope').style.display = 'block';
+      }, 1000); // 1s sau thì hiện phong thư
+    }
+
     const text = "Chúc cô gái của tôi luôn rạng rỡ, xinh đẹp và hạnh phúc.\n"
-               + "Mong rằng mỗi ngày trôi qua với bạn đều là niềm vui, tình yêu thương và sự thành công.\n"
-               + "Cảm ơn bạn vì đã làm cho cuộc sống này thêm phần ý nghĩa 💐\n"
-               + "Hôm nay là ngày của bạn đó nha...!\n";
+      + "Mong rằng mỗi ngày trôi qua với bạn đều là niềm vui, tình yêu thương và sự thành công.\n"
+      + "Cảm ơn bạn vì đã làm cho cuộc sống này thêm phần ý nghĩa 💐\n"
+      + "Hôm nay là ngày của bạn đó nha...!\n";
 
     // Tạo hiệu ứng trang trí cho phong thư
     function createEnvelopeDecorations() {
       const decoration = document.getElementById('decoration');
-      
+
       // Thêm trái tim nhỏ
       for (let i = 0; i < 8; i++) {
         const heart = document.createElement('div');
@@ -699,7 +114,7 @@
         heart.style.fontSize = (10 + Math.random() * 15) + 'px';
         decoration.appendChild(heart);
       }
-      
+
       // Thêm hiệu ứng lấp lánh
       for (let i = 0; i < 15; i++) {
         const sparkle = document.createElement('div');
@@ -713,30 +128,26 @@
 
     function openCard() {
       document.getElementById('envelope').classList.add('open');
-      const music = document.getElementById('bg-music');
-        document.getElementById('envelope').classList.add('open');
 
-        // phát nhạc ngay khi click (được phép vì user vừa click)
-        music.currentTime = 0;
-        music.play().catch(err => console.log("Không phát được nhạc: ", err));
       setTimeout(() => {
         document.querySelector('.envelope-container').style.display = 'none';
         document.getElementById('card').style.display = 'flex';
-        document.getElementById('bg-music').play();
+        // KHÔNG gọi lại nhạc ở đây nữa
         typeText();
         createFlowers();
         createHearts();
         createMusicNotes();
       }, 1200);
     }
-    
+
+
     function closeCard() {
       document.getElementById('card').style.display = 'none';
       document.querySelector('.envelope-container').style.display = 'flex';
       document.getElementById('envelope').classList.remove('open');
       document.getElementById('bg-music').pause();
       document.getElementById('bg-music').currentTime = 0;
-      
+
       // Reset nội dung
       document.getElementById("message").innerHTML = "";
       document.getElementById("signature").style.display = 'none';
@@ -760,10 +171,10 @@
         let flower = document.createElement("div");
         flower.classList.add("flower");
         flower.style.left = Math.random() * 100 + "vw";
-        flower.style.animationDuration = 6 + Math.random()*4 + "s";
+        flower.style.animationDuration = 6 + Math.random() * 4 + "s";
         flower.innerHTML = "🌸";
         document.body.appendChild(flower);
-        setTimeout(()=> flower.remove(), 10000);
+        setTimeout(() => flower.remove(), 10000);
       }, 800);
     }
 
@@ -773,31 +184,45 @@
         let heart = document.createElement("div");
         heart.classList.add("heart");
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (15 + Math.random()*20) + "px";
+        heart.style.fontSize = (15 + Math.random() * 20) + "px";
         heart.innerHTML = "❤️";
         document.body.appendChild(heart);
-        setTimeout(()=> heart.remove(), 6000);
+        setTimeout(() => heart.remove(), 6000);
       }, 1200);
     }
-    
+
     // tạo nốt nhạc bay
     function createMusicNotes() {
       setInterval(() => {
         let note = document.createElement("div");
         note.classList.add("music-note");
         note.style.left = Math.random() * 100 + "vw";
-        note.style.animationDuration = 5 + Math.random()*5 + "s";
+        note.style.animationDuration = 5 + Math.random() * 5 + "s";
         note.innerHTML = "♪";
         document.body.appendChild(note);
-        setTimeout(()=> note.remove(), 8000);
+        setTimeout(() => note.remove(), 8000);
       }, 1500);
     }
-    
+
     // Điều khiển nhạc
-    document.getElementById('musicControl').addEventListener('click', function() {
+    function openGift() {
+      let gift = document.getElementById('gift');
+      gift.classList.add('hidden');
+
+      setTimeout(() => {
+        gift.style.display = 'none';
+        document.getElementById('envelope').style.display = 'block';
+        document.getElementById('bg-music').play();
+      }, 1500); // 1s sau thì hiện phong thư
+      let music = document.getElementById('bg-music');
+      music.playbackRate = 1.2; // 1.0 = bình thường, 2.0 = gấp đôi
+      music.play();
+    }
+
+    document.getElementById('musicControl').addEventListener('click', function () {
       const music = document.getElementById('bg-music');
       const icon = this.querySelector('i');
-      
+
       if (music.paused) {
         music.play();
         icon.classList.remove('fa-volume-mute');
@@ -810,9 +235,9 @@
     });
 
     // Khởi tạo
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       createEnvelopeDecorations();
-      
+
       // Tự động phát nhạc sau 2 giây (yêu cầu tương tác người dùng)
       setTimeout(() => {
         document.getElementById('bg-music').play().catch(e => {
@@ -823,4 +248,5 @@
   </script>
 
 </body>
+
 </html>
