@@ -571,7 +571,8 @@ body {
 }
 
 .signature {
-    position: absolute;
+    position: left;
+    margin-top: 2px;
     bottom: 20px;
     right: 30px;
     font-style: italic;
